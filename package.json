@@ -22,6 +22,6 @@
   "bugs": {
     "url": "https://github.com/rnilssoncx/homebridge-pico/issues"
   },
-  "dependencies": {
-  }
+  "dependencies": {},
+  "homepage": "https://github.com/rnilssoncx/homebridge-pico#readme"
 }
