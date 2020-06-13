@@ -1,0 +1,27 @@
+{
+  "name": "homebridge-pico",
+  "version": "0.0.1",
+  "description": "A HomeBridge plugin to expose Lutron Pico Remotes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rnilssoncx/homebridge-huelabs.git"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "author": "Robert Nilsson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rnilssoncx/homebridge-onewire/issues"
+  },
+  "dependencies": {
+  }
+}
