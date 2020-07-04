@@ -39,20 +39,22 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
       "platform": "Pico",
       "quiet": false,
       "servers": [
-        "host": "<IP Address or Host Name>",
-        "port": 80,
-        "switches": [
-          {
-            "name": "Kitchen Pico",
-            "pico": 22,
-            "type": "simple"
-          },
-          {
-            "name": "Home Theater Pico",
-            "pico": [11,31],
-            "type": "scene"
-          }
-        ]
+        {
+          "host": "<IP Address or Host Name>",
+          "port": 80,
+          "switches": [
+            {
+              "name": "Kitchen Pico",
+              "pico": 22,
+              "type": "simple"
+            },
+            {
+             "name": "Home Theater Pico",
+             "pico": [11,31],
+             "type": "scene"
+            }
+          ]
+        }
       ]
     }
   ]
