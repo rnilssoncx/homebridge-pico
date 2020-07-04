@@ -83,6 +83,8 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
 
 `quiet`: If set to `true`, logging will only happen for errors.  If not present or set to "false", log will show Lutron bus activity.  This logging is extremely handy for identifying a Pico remote. (default: `false`)
 
+`clicktime`:  The timeout for detecting a doubleclick in milliseconds.  (default: 500)
+
 ## Credits
 
 See [CONTRIBUTORS](CONTRIBUTORS.md) for acknowledgements to the individuals that contributed to this plugin.
