@@ -21,7 +21,7 @@ const labels = {
   '18': 'Toggle 1',
   '19': 'Toggle 2',
   '20': 'Toggle 3',
-  '21': 'Toggle 4'
+  '21': 'Toggle 4',
   '22': 'Open 1',
   '23': 'Closed 1',
   '24': 'Open 2',
