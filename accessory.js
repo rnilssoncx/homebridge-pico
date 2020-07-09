@@ -18,7 +18,8 @@ const types = {
   "scene": ['8', '9', '10', '11'],
   "simple": ['2', '4'],
   "dimmer": ['2', '5', '6', '4'],
-  "favorite": ['2', '5', '3', '6', '4']
+  "favorite": ['2', '5', '3', '6', '4'],
+  "PJ2-3B": ['2', '3', '4']
 }
 
 let Accessory, Characteristic, Service;
