@@ -72,7 +72,7 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
 * `name`: Name of the remote as it will appear in HomeKit
 * `pico`: One or more Pico Remotes that will trigger the Homekit button
 * `type`:
-  * `PJ2-2B`: Basic two buton Pico - on/off
+  * `PJ2-2B`: Two buton Pico (previously `simple` - on/off
   * `PJ2-2BRL`: Four button Pico (previously `dimmer`) - on/brighten/dim/off
   * `PJ2-3B`: Three button Pico - on/favorite/off
   * `PJ2-3BRL`: Five button Pico (previously `favorite`) - on/brigthen/favorite/dim/off
