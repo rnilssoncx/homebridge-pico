@@ -41,6 +41,10 @@
 												"enum": ["PJ2-2B"]
 											},
 											{
+												"title": "PJ2-2BRL",
+												"enum": ["PJ2-2BRL"]
+											},
+											{
 												"title": "PJ2-3B",
 												"enum": ["PJ2-3B"]
 											},
@@ -49,12 +53,36 @@
 												"enum": ["PJ2-3BRL"]
 											},
 											{
-												"title": "PJ2-4B",
-												"enum": ["PJ2-4B"]
+												"title": "PJ2-4B-XXX-L01",
+												"enum": ["PJ2-4B-XXX-L01"]
 											},
 											{
-												"title": "PICO-REMOTE",
-												"enum": ["PICO-REMOTE"]
+												"title": "PJ2-4B-XXX-S01",
+												"enum": ["PJ2-4B-XXX-S01"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L21",
+												"enum": ["PJ2-4B-XXX-L21"]
+											},
+											{
+												"title": "PJ2-4B-XXX-S21",
+												"enum": ["PJ2-4B-XXX-S21"]
+											},
+											{
+												"title": "PJ2-4B-XXX-LS21",
+												"enum": ["PJ2-4B-XXX-LS21"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L31",
+												"enum": ["PJ2-4B-XXX-L31"]
+											},
+											{
+												"title": "PJ2-4B-XXX-S31",
+												"enum": ["PJ2-4B-XXX-S31"]
+											},
+											{
+												"title": "PJ2-4B-XXX-L41",
+												"enum": ["PJ2-4B-XXX-L41"]
 											}
 										],
 										"required": true
