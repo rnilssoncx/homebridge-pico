@@ -11,7 +11,7 @@ const labels = {
   '8': 'Scene 1',
   '9': 'Scene 2',
   '10': 'Scene 3',
-  '11': 'Scene Off',
+  '11': 'Scene Off'
 }
 
 const types = {

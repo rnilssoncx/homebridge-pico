@@ -76,6 +76,7 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
   * `dimmer`:  Four button Pico - on/brighten/dim/off
   * `favorite`:  Five buttom Pico - on/brigthen/favorite/dim/off
   * `scene`: Four button Pico - scene 1/scene 2/scene 3/off
+  * `PJ2-3B`: Three button Pico
   * If you aren't sure what type to choose, the 2nd number after "DEVICE" in the log is the button pressed.  You can press the buttons on the Pico remote and compare the output to the list in `accessory.js`.  If you find you have buttons configured differently, or not in the list, please let me know and I'll add your Pico.
 
 
