@@ -1,0 +1,79 @@
+{
+	"pluginAlias": "Pico",
+	"pluginType": "platform",
+	"singular": true,
+	"schema": {
+		"type": "object",
+		"properties": {
+			"quiet": {
+				"type": "boolean"
+			},
+			"servers": {
+				"type": "array",
+				"items": {
+					"title": "Bridge",
+					"type": "object",
+					"properties": {
+						"host": {
+							"type": "string",
+							"required": true,
+							"format": "hostname"
+						},
+						"port": {
+							"required": true,
+							"type": "integer"
+						},
+						"switches": {
+							"type": "array",
+							"required": true,
+							"items": {
+								"title": "Switch",
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string",
+										"required": true
+									},
+									"type": {
+										"type": "string",
+										"oneOf": [{
+												"title": "PJ2-2B",
+												"enum": ["PJ2-2B"]
+											},
+											{
+												"title": "PJ2-3B",
+												"enum": ["PJ2-3B"]
+											},
+											{
+												"title": "PJ2-3BRL",
+												"enum": ["PJ2-3BRL"]
+											},
+											{
+												"title": "PJ2-4B",
+												"enum": ["PJ2-4B"]
+											},
+											{
+												"title": "PICO-REMOTE",
+												"enum": ["PICO-REMOTE"]
+											}
+										],
+										"required": true
+									},
+									"pico": {
+										"type": "array",
+										"required": true,
+										"items": {
+											"title": "Remote",
+											"type": "integer",
+											"required": true
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
