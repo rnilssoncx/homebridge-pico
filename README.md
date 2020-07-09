@@ -1,4 +1,4 @@
-# Pico Platform - Beta
+# Pico Platform
 
 A platform that exposes Lutron Pico Remotes to Homekit as buttons.  Supports single, double, and long press actions.
 
