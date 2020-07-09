@@ -72,11 +72,18 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
 * `name`: Name of the remote as it will appear in HomeKit
 * `pico`: One or more Pico Remotes that will trigger the Homekit button
 * `type`:
-  * `simple`: Basic two button Pico - on/off
-  * `dimmer`:  Four button Pico - on/brighten/dim/off
-  * `favorite`:  Five buttom Pico - on/brigthen/favorite/dim/off
-  * `scene`: Four button Pico - scene 1/scene 2/scene 3/off
-  * `PJ2-3B`: Three button Pico
+  * `PJ2-2B`: Two buton Pico (previously `simple` - on/off
+  * `PJ2-2BRL`: Four button Pico (previously `dimmer`) - on/brighten/dim/off
+  * `PJ2-3B`: Three button Pico - on/favorite/off
+  * `PJ2-3BRL`: Five button Pico (previously `favorite`) - on/brigthen/favorite/dim/off
+  * `PJ2-4B-XXX-L01`: Four button Pico for lights - on/up/down/off,
+  * `PJ2-4B-XXX-S01`: Four button Pico for shades - on/up/down/off,
+  * `PJ2-4B-XXX-L21`: Four button Pico for 2 lights - on1/off1/on2/off2 
+  * `PJ2-4B-XXX-S21`: Four button Pico for 2 shades - open1/closed1/open2/closed2
+  * `PJ2-4B-XXX-LS21`: Four button Pico for lights and shades - on/off/open/closed,
+  * `PJ2-4B-XXX-L31`: Four button Pico for lights (Previously `scene`) - scene1/scene2/scene3/off,
+  * `PJ2-4B-XXX-S31`: Four button Pico for lights - open/scene1/scene2/close,
+  * `PJ2-4B-XXX-L41`: Four button Pico with 4 toggles - toggle1/toggle2/toggle3/toggle4,
   * If you aren't sure what type to choose, the 2nd number after "DEVICE" in the log is the button pressed.  You can press the buttons on the Pico remote and compare the output to the list in `accessory.js`.  If you find you have buttons configured differently, or not in the list, please let me know and I'll add your Pico.
 
 
