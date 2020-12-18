@@ -23,7 +23,7 @@ After [Homebridge](https://github.com/nfarina/homebridge) has been installed:
 
 In the Lutron mobile app go to configure, choose Advanced, and then Integration.  Enable Telnet Support.  You can also choose to "Send Integration Report" here and it will email you the device list with IDs for your bridge.
 
-Configure the plugin with `quiet` set to false.  Add your Pico remotes to your Lutron Pro bridge.  You do not have to associate the Pico remotes with Lutron lights.  Simply push any button on the Pico remote you'd like to add to this plugin and you'll see a log entry like this in homebridge:
+Configure the plugin with `buslog` set to `monitor` or `full`.  Add your Pico remotes to your Lutron Pro bridge.  You do not have to associate the Pico remotes with Lutron lights.  Simply push any button on the Pico remote you'd like to add to this plugin and you'll see a log entry like this in homebridge:
 
 `[6/13/2020, 11:14:23] [Pico] [<bridge IP>] Bus Data: ~DEVICE,63,2,3`
 
