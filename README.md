@@ -1,4 +1,7 @@
 # Pico Platform
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+[![npm](https://badgen.net/npm/dt/homebridge-pico?color=purple)](https://www.npmjs.com/package/homebridge-pico)
+[![donate](https://img.shields.io/badge/donate-paypal-green)](https://paypal.me/nilssonstudios)
 
 A platform that exposes Lutron Pico Remotes to Homekit as buttons.  Supports single, double, and long press actions.
 
@@ -37,11 +40,11 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
   "platforms": [
     {
       "platform": "Pico",
-      "quiet": false,
+      "buslog": "monitor",
       "servers": [
         {
           "host": "<IP Address or Host Name>",
-          "port": 80,
+          "port": 23,
           "switches": [
             {
               "name": "Kitchen Pico",
@@ -89,9 +92,15 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
 
 ### Optional platform settings:
 
-`quiet`: If set to `true`, logging will only happen for errors.  If not present or set to "false", log will show Lutron bus activity.  This logging is extremely handy for identifying a Pico remote. (default: `false`)
+* `buslog`: (default: `off`)
 
-`clicktime`:  The timeout for detecting a doubleclick in milliseconds.  (default: 500)
+  * `off`: No bus logging
+  * `monitor`: Show Lutron commands sent and received on bus
+  * `full`: Show all bus and keep alive activity
+
+* `clicktime`:  The timeout for detecting a doubleclick in milliseconds.  (default: 500)
+
+* `longname`:  If you'd like the name of the switch added to the function (`Dining Room Single Press` instead of `Single Press`) set this to `true`. For normal installations this should not be needed. (default: `false`)
 
 ## Credits
 

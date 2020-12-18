@@ -25,15 +25,21 @@ class Pico {
     this.log(`${platformPrettyName} Plugin Loaded - Version ${version}`);
     this.api = api;
     this.clickTime = config.clicktime || 500;
-    this.quiet = config.quiet || false;
-    if (this.quiet) {
-      this.log('Quiet logging mode');
+    if (config.quiet) {
+      this.log('"quiet" config setting is depricated, switch to "buslog"');
+    } 
+    this.buslog = config.buslog || ((config.quiet || false) ? "full" : "off");
+    if (['off', 'monitor', 'full'].indexOf(this.buslog) < 0) {
+      this.log(`Invalid "buslog" setting "${this.buslog}", using "full"`);
+      this.buslog = "full";
     }
+    this.log(`Bus Logging set to ${this.buslog}`);
+    this.longname = config.longname || false;
     this.servers = {};
     for (let server of config.servers) {
       this.servers[server.host] = {
         switches: server.switches,
-        process: new CasetaPro(log, server.host, server.port, this.eventHandler.bind(this), this.quiet)
+        process: new CasetaPro(log, server.host, server.port, this.eventHandler.bind(this), this.buslog)
       };
     }
     this.clickProcessor = {};
@@ -45,7 +51,7 @@ class Pico {
     for (let key of Object.keys(this.servers)) {
       for (let sw of this.servers[key].switches) {
         this.log(`${key}: "${sw.name}" - ${sw.type} - ${sw.pico}`);
-        const accessory = new PicoRemote(this.log, sw, this.api, version, this.quiet);
+        const accessory = new PicoRemote(this.log, sw, this.api, version, this.longname);
         if (!Array.isArray(sw.pico)) {
           sw.pico = [sw.pico];
         }

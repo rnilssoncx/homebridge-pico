@@ -1,7 +1,5 @@
 'use strict';
 
-const http = require('http');
-
 const labels = {
   '2': 'On',
   '5': 'Up',
@@ -50,7 +48,7 @@ const types = {
 let Accessory, Characteristic, Service;
 
 class PicoRemote {
-  constructor(log, sw, api, version, quiet) {
+  constructor(log, sw, api, version, longname) {
     Accessory = api.hap.Accessory;
     Characteristic = api.hap.Characteristic;
     Service = api.hap.Service;
@@ -60,7 +58,7 @@ class PicoRemote {
     this.name = sw.name;
     this.type = sw.type;
     this.version = version;
-    this.quiet = quiet;
+    this.longname = longname;
     this.buttons = {};
   }
 
@@ -71,7 +69,8 @@ class PicoRemote {
     services.push(this.getAccessoryInformationService());
 
     for (let button of types[this.type]) {
-      let switchService = new Service.StatelessProgrammableSwitch(labels[button], labels[button]);
+      let switchService = new Service.StatelessProgrammableSwitch((this.longname ? this.name + " " : "") + 
+        labels[button], labels[button]);
       switchService.getCharacteristic(Characteristic.ProgrammableSwitchEvent)
         .setProps({ maxValue: 2 });
       switchService.getCharacteristic(Characteristic.ServiceLabelIndex).setValue(index++);

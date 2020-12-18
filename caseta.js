@@ -8,15 +8,17 @@ const lutronLogin = {
 }
 
 class CasetaPro {
-    constructor(log, host, port, eventHandler, quiet) {
+    constructor(log, host, port, eventHandler, buslog) {
         this._log = log;
-        this.log(`Caseta Pro Initializing`);
         this.host = host;
         this.port = port;
+
+        this.log(`Caseta Pro Initializing`);
         this.loggedIn = false;
         this.socket = new net.Socket();
-        this.quiet = quiet;
+        this.buslog = buslog;
         this.eventHandler = eventHandler;
+
 
         this.socket.on('connect', () => {
             this.log(`Caseta Pro Connected`);
@@ -38,7 +40,7 @@ class CasetaPro {
         const lines = data.toString().split("\r\n").filter(l => l != "");
 
         for (let line of lines) {
-            if (!this.quiet) {
+            if (this.buslog != 'off' && (!/^GNET>\s*/.test(line) || this.buslog == 'full')) {
                 this.log(`Bus Data: ${line}`);
             }
             if (this.loggedIn) {
@@ -72,7 +74,7 @@ class CasetaPro {
             this.log('Attempting connection');
             this.socket.connect(this.port, this.host);
         } else if (!this.socket.connecting) {
-            if (!this.quiet) {
+            if (this.buslog == 'full') {
                 this.log(`Writing Keep Alive`)
             }
             this.socket.write('\r\n');
