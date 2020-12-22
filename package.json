@@ -1,6 +1,6 @@
 {
   "name": "homebridge-pico",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A HomeBridge plugin to expose Lutron Pico Remotes",
   "funding": {
     "type" : "paypal",
@@ -15,7 +15,13 @@
     "url": "git://github.com/rnilssoncx/homebridge-pico.git"
   },
   "keywords": [
-    "homebridge-plugin"
+    "homebridge-plugin",
+    "pico",
+    "lutron",
+    "caseta",
+    "homebridge",
+    "home-automation",
+    "smartbridge" 
   ],
   "engines": {
     "node": ">=0.12.0",
