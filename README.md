@@ -52,9 +52,9 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
               "type": "simple"
             },
             {
-             "name": "Home Theater Pico",
-             "pico": [11,31],
-             "type": "scene"
+              "name": "Home Theater Pico",
+              "pico": [11,31],
+              "type": "scene"
             }
           ]
         }

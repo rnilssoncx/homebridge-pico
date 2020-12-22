@@ -26,7 +26,7 @@ class Pico {
     this.api = api;
     this.clickTime = config.clicktime || 500;
     if (config.quiet) {
-      this.log('"quiet" config setting is depricated, switch to "buslog"');
+      this.log('"quiet" config setting is deprecated, switch to "buslog"');
     } 
     this.buslog = config.buslog || ((config.quiet || false) ? "full" : "off");
     if (['off', 'monitor', 'full'].indexOf(this.buslog) < 0) {
