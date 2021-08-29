@@ -92,9 +92,22 @@
 											{
 												"title": "PJ2-4B-XXX-L41",
 												"enum": ["PJ2-4B-XXX-L41"]
+											},
+											{
+												"title": "custom",
+												"enum": ["custom"]
 											}
 										],
 										"required": true
+									},
+									"buttons": {
+										"type": "array",
+										"required": false,
+										"items": {
+											"title": "Button",
+											"type": "integer",
+											"required": true
+										}
 									},
 									"pico": {
 										"type": "array",

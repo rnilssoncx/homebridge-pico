@@ -23,7 +23,7 @@ const labels = {
   '22': 'Open 1',
   '23': 'Closed 1',
   '24': 'Open 2',
-  '25': 'Closed 2',
+  '25': 'Closed 2'
 }
 
 const types = {
@@ -41,8 +41,10 @@ const types = {
   "PJ2-4B-XXX-S21": ['22', '23', '24', '25'],
   "PJ2-4B-XXX-LS21": ['2', '4', '12', '13'],
   "PJ2-4B-XXX-L31": ['8', '9', '10', '11'],
-  "PJ2-4B-XXX-S31": ['12', '9', '10', '13'],
+//  "PJ2-4B-XXX-S31": ['12', '9', '10', '13'],
+  "PJ2-4B-XXX-S31": ['8', '9', '10', '11'],
   "PJ2-4B-XXX-L41": ['18', '19', '20', '21'],
+  "custom": []
 }
 
 let Accessory, Characteristic, Service;
@@ -57,6 +59,7 @@ class PicoRemote {
     this.log(`Creating ${sw.type} switch: ${sw.name}`);
     this.name = sw.name;
     this.type = sw.type;
+    this.custom_buttons = sw.buttons || [];
     this.version = version;
     this.longname = longname;
     this.buttons = {};
@@ -65,20 +68,33 @@ class PicoRemote {
   getServices() {
     let services = [];
     let index = 1;
+    let button_list = [];
+    let label;
 
-    services.push(this.getAccessoryInformationService());
+    if (this.type in types) {
+      if (this.type == "custom") {
+        button_list = this.custom_buttons;
+      } else {
+        button_list = types[this.type];
+      }
+      services.push(this.getAccessoryInformationService());
 
-    for (let button of types[this.type]) {
-      let switchService = new Service.StatelessProgrammableSwitch((this.longname ? this.name + " " : "") + 
-        labels[button], labels[button]);
-      switchService.getCharacteristic(Characteristic.ProgrammableSwitchEvent)
-        .setProps({ maxValue: 2 });
-      switchService.getCharacteristic(Characteristic.ServiceLabelIndex).setValue(index++);
-      this.buttons[button] = switchService;
-      services.push(switchService);
-      this.log(`Switch "${this.name}" Button "${labels[button]}" created`);
+      for (let button of button_list) {
+        if (button in labels) {
+          label = labels[button];
+        } else {
+          label = `Custom button ${button}`;
+        }
+        let switchService = new Service.StatelessProgrammableSwitch((this.longname ? this.name + " " : "") + 
+          label, label);
+        switchService.getCharacteristic(Characteristic.ProgrammableSwitchEvent)
+          .setProps({ maxValue: 2 });
+        switchService.getCharacteristic(Characteristic.ServiceLabelIndex).setValue(index++);
+        this.buttons[button] = switchService;
+        services.push(switchService);
+        this.log(`Switch "${this.name}" Button "${label}" created`);
+      }
     }
-
     return services;
   }
 
@@ -100,8 +116,12 @@ class PicoRemote {
   trigger(button, click) {
     const clickType = ['single', 'double', 'long'];
 
-    this.buttons[button].getCharacteristic(Characteristic.ProgrammableSwitchEvent).setValue(click);
-    this.log(`${this.name} - ${labels[button]} ${clickType[click]} press`);
+    if (button in this.buttons) {
+      this.buttons[button].getCharacteristic(Characteristic.ProgrammableSwitchEvent).setValue(click);
+      this.log(`${this.name} - ${labels[button]} ${clickType[click]} press`);
+    } else {
+      this.log(`${this.name} - Invalid button: ${button}`);
+    }
   }
 
 }
