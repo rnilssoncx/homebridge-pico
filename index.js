@@ -25,6 +25,9 @@ class Pico {
     this.log(`${platformPrettyName} Plugin Loaded - Version ${version}`);
     this.api = api;
     this.clickTime = config.clicktime || 500;
+    this.slowButtons = config.slowbuttons || [5,6];
+    this.slowExtra = config.slowextra || 250;
+    this.repeatTime = config.repeattime || 500;
     if (config.quiet) {
       this.log('"quiet" config setting is deprecated, switch to "buslog"');
     } 
@@ -69,7 +72,12 @@ class Pico {
     if (this.servers[event.host][event.device]) {
       let eventKey = `${event.host} ${event.device} ${event.button}`
       if (!this.clickProcessor[eventKey]) {
-        this.clickProcessor[eventKey] = new Click(event, this.clickTime, this.log, this.clickHandler.bind(this));
+        let clickTime = this.clickTime
+        if (this.slowButtons.includes(parseInt(event.button))) {
+          clickTime += this.slowExtra
+        }
+        this.clickProcessor[eventKey] = new Click(event, clickTime, this.repeatTime, this.log, 
+          this.servers[event.host][event.device].repeatTime(event.button), this.clickHandler.bind(this));
       } else {
         this.clickProcessor[eventKey].click(event);
       }
@@ -82,15 +90,17 @@ class Pico {
 }
 
 class Click {
-  constructor(event, doubleClickTime, log, callback) {
+  constructor(event, doubleClickTime, repeatTime, log, repeat, callback) {
     this.host = event.host
     this.device = event.device
     this.button = event.button
     this.doubleClickTime = doubleClickTime
+    this.repeatTime = repeatTime
     this.log = log
+    this.repeat = repeat
     this.callback = callback
-    this.log(`[${this.host}] Device ${this.device} Button ${this.button} - Created tracker`)
-
+    this.repeating = false
+    this.log(`[${this.host}] Device ${this.device} Button ${this.button} Repeat ${this.repeat} Click ${doubleClickTime} - Created tracker`)
     this.click(event)
   }
 
@@ -111,8 +121,8 @@ class Click {
     }
   }
 
-  _setTimer() {
-    this.timer = setTimeout(this._finished.bind(this), this.doubleClickTime)
+  _setTimer(milliseconds = this.doubleClickTime) {
+    this.timer = setTimeout(this._finished.bind(this), milliseconds)
     this.ups = 0
   }
 
@@ -130,9 +140,17 @@ class Click {
       event.click = 1
     } else if (this.ups == 0) {
       event.click = 2
+      if (this.repeat) {
+        this.repeating = true
+        this._setTimer(this.repeatTime)
+      }
     } else {
       event.click = 0
     }
-    this.callback(event)
+    if (!this.repeating || (this.repeating && event.click == 2)) {
+      this.callback(event)
+    } else {
+      this.repeating = false
+    }
   }
 }

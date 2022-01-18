@@ -60,9 +60,17 @@ class PicoRemote {
     this.name = sw.name;
     this.type = sw.type;
     this.custom_buttons = sw.buttons || [];
+    this.repeat = sw.repeat || [];
+    if (!Array.isArray(this.repeat)) {
+      this.repeat = [this.repeat]
+    }
     this.version = version;
     this.longname = longname;
     this.buttons = {};
+  }
+
+  repeatTime(button) {
+    return this.repeat.includes(parseInt(button))
   }
 
   getServices() {

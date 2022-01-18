@@ -1,6 +1,6 @@
 {
   "name": "homebridge-pico",
-  "version": "1.1.1-beta.0",
+  "version": "1.2",
   "description": "A HomeBridge plugin to expose Lutron Pico Remotes",
   "funding": {
     "type": "paypal",

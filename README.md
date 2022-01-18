@@ -55,7 +55,8 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
               "name": "Home Theater Pico",
               "pico": [11,31],
               "type": "custom",
-              "buttons": [2,4]
+              "buttons": [2,4,5],
+              "repeat": [2,4]
             }
           ]
         }
@@ -75,6 +76,7 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
 
 * `name`: Name of the remote as it will appear in HomeKit
 * `pico`: One or more Pico Remotes that will trigger the Homekit button
+* `repeat`: (optional) Buttons to enable for repeating long press
 * `type`:
   * `PJ2-2B`: Two buton Pico (previously `simple` - on/off
   * `PJ2-2BRL`: Four button Pico (previously `dimmer`) - on/brighten/dim/off
@@ -100,7 +102,13 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
   * `monitor`: Show Lutron commands sent and received on bus
   * `full`: Show all bus and keep alive activity
 
-* `clicktime`:  The timeout for detecting a doubleclick in milliseconds.  (default: 500)
+* `clicktime`:  The timeout for detecting a doubleclick in milliseconds.  (default: `500`)
+
+* `slowbuttons`:  The up and down buttons on remotes can repeat when directly paired with a Lutron switch.  I believe they already have a built in delay because of this capability.  This makes these two buttons not capable of a double click with the default clicktime.  This setting allows you to list out buttons you want extra time alloted to correct for this.  (default: `[5,6]`)
+
+* `slowextra`:  This sets the additional time added to the buttons listed in `slowbuttons`.  (default: `250`)
+
+* `repeattime`:  The delay for repeating long presses in milliseconds.  (default: `500`)
 
 * `longname`:  If you'd like the name of the switch added to the function (`Dining Room Single Press` instead of `Single Press`) set this to `true`. For normal installations this should not be needed. (default: `false`)
 
