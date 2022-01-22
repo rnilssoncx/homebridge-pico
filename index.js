@@ -77,7 +77,8 @@ class Pico {
           clickTime += this.slowExtra
         }
         this.clickProcessor[eventKey] = new Click(event, clickTime, this.repeatTime, this.log, 
-          this.servers[event.host][event.device].repeatTime(event.button), this.clickHandler.bind(this));
+          this.servers[event.host][event.device].repeatButton(event.button), 
+          this.servers[event.host][event.device].repeatMax(), this.clickHandler.bind(this));
       } else {
         this.clickProcessor[eventKey].click(event);
       }
@@ -90,16 +91,17 @@ class Pico {
 }
 
 class Click {
-  constructor(event, doubleClickTime, repeatTime, log, repeat, callback) {
+  constructor(event, doubleClickTime, repeatTime, log, repeat, repeatMax, callback) {
     this.host = event.host
     this.device = event.device
     this.button = event.button
     this.doubleClickTime = doubleClickTime
     this.repeatTime = repeatTime
+    this.repeatMax = repeatMax
     this.log = log
     this.repeat = repeat
     this.callback = callback
-    this.repeating = false
+    this.repeatCount = 0
     this.log(`[${this.host}] Device ${this.device} Button ${this.button} Repeat ${this.repeat} Click ${doubleClickTime} - Created tracker`)
     this.click(event)
   }
@@ -141,16 +143,18 @@ class Click {
     } else if (this.ups == 0) {
       event.click = 2
       if (this.repeat) {
-        this.repeating = true
-        this._setTimer(this.repeatTime)
+        if (this.repeatCount++ < this.repeatMax)
+          this._setTimer(this.repeatTime)
+        else 
+          this.repeatCount = 0;
       }
     } else {
       event.click = 0
     }
-    if (!this.repeating || (this.repeating && event.click == 2)) {
+    if (this.repeatcount == 0 || (this.repeatCount > 0 && event.click == 2)) {
       this.callback(event)
     } else {
-      this.repeating = false
+      this.repeatCount = 0
     }
   }
 }

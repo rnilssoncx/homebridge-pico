@@ -64,13 +64,18 @@ class PicoRemote {
     if (!Array.isArray(this.repeat)) {
       this.repeat = [this.repeat]
     }
+    this.repeatmax = sw.repeatmax || 10;
     this.version = version;
     this.longname = longname;
     this.buttons = {};
   }
 
-  repeatTime(button) {
+  repeatButton(button) {
     return this.repeat.includes(parseInt(button))
+  }
+
+  repeatMax() {
+    return this.repeatmax;
   }
 
   getServices() {

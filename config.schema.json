@@ -94,6 +94,18 @@
 												"enum": ["PJ2-4B-XXX-L41"]
 											},
 											{
+												"title": "Simple (Two Button)",
+												"enum": ["simple"]
+											},
+											{
+												"title": "Dimmer (No favorite button)",
+												"enum": ["dimmer"]
+											},
+											{
+												"title": "Dimmer (Favorite button)",
+												"enum": ["favorite"]
+											},
+											{
 												"title": "custom",
 												"enum": ["custom"]
 											}
@@ -108,6 +120,21 @@
 											"type": "integer",
 											"required": true
 										}
+									},
+									"repeat": {
+										"type": "array",
+										"required": false,
+										"items": {
+											"title": "Button",
+											"type": "integer",
+											"required": true
+										}
+									},
+									"repeatmax": {
+										"title": "Maximum repeats",
+										"type": "integer",
+										"required": false,
+										"default": 10
 									},
 									"pico": {
 										"type": "array",
@@ -129,6 +156,34 @@
 				"type": "boolean",
 				"required": false,
 				"default": false
+			},
+			"clicktime": {
+				"title": "Double click detection time",
+				"type": "integer",
+				"required": false,
+				"default": 500
+			},
+			"slowextra": {
+				"title": "Additional time for slower pico buttons",
+				"type": "integer",
+				"required": false,
+				"default": 250
+			},
+			"repeattime": {
+				"title": "Delay between repeated long presses",
+				"type": "integer",
+				"required": false,
+				"default": 500
+			},
+			"slowbuttons": {
+				"type": "array",
+				"required": false,
+				"items": {
+					"title": "Button",
+					"type": "integer",
+					"required": true
+				},
+				"default": [5,6]
 			}
 		}
 	}
