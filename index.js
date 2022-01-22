@@ -143,7 +143,8 @@ class Click {
     } else if (this.ups == 0) {
       event.click = 2
       if (this.repeat) {
-        if (this.repeatCount++ < this.repeatMax)
+        this.repeatCount++
+        if (this.repeatCount < this.repeatMax)
           this._setTimer(this.repeatTime)
         else 
           this.repeatCount = 0;
@@ -151,7 +152,7 @@ class Click {
     } else {
       event.click = 0
     }
-    if (this.repeatcount == 0 || (this.repeatCount > 0 && event.click == 2)) {
+    if (this.repeatCount == 0 || (this.repeatCount > 0 && event.click == 2)) {
       this.callback(event)
     } else {
       this.repeatCount = 0
