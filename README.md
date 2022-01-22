@@ -70,13 +70,14 @@ The number after `DEVICE` is the ID of the Pico remote you just pressed.
 
 `host`: IP Address or hostname of the Lutron Caseta Pro bridge
 
-`port`: Port to use for the Lutron Caseta Pro bridge (default: 23)
+`port`: Port to use for the Lutron Caseta Pro bridge (default: `23`)
 
 `switches`: List of the Pico remotes to be exposed to Homekit
 
 * `name`: Name of the remote as it will appear in HomeKit
 * `pico`: One or more Pico Remotes that will trigger the Homekit button
 * `repeat`: (optional) Buttons to enable for repeating long press
+* `repeatmax`: (optional) Maximum repeats for a button (default: `10`)
 * `type`:
   * `PJ2-2B`: Two buton Pico (previously `simple` - on/off
   * `PJ2-2BRL`: Four button Pico (previously `dimmer`) - on/brighten/dim/off
